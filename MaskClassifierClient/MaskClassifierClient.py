@@ -12,31 +12,25 @@ def get_prediction(content, project_id, model_id):
     request = prediction_client.predict(name=name, payload=payload)
     return request  # waits till request is returned
 
-def isMaskOnCorrect(imagePath):
+def isMaskOnCorrect(imageBytes):
     #note: make sure the service account credentials are stored here
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/secrets/credentials.json"
     project_id = "854619995345"
     model_id = "ICN5390476701450895360"
 
-    with open(file_path, 'rb') as ff:
-      content = ff.read()
-    ff.close()
-    result = get_prediction(content, project_id, model_id).payload[0].display_name
+    result = get_prediction(imageBytes, project_id, model_id).payload[0].display_name
     if result == "Correct":
         return True
     else:
         return False
 
-def isMaskOn(imagePath):
+def isMaskOn(imageBytes):
     #note: make sure the service account credentials are stored here
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/secrets/credentials.json"
     project_id = "854619995345"
     model_id = "ICN3259992602727940096"
 
-    with open(file_path, 'rb') as ff:
-      content = ff.read()
-    ff.close()
-    result = get_prediction(content, project_id, model_id).payload[0].display_name
+    result = get_prediction(imageBytes, project_id, model_id).payload[0].display_name
     if result == "Correct":
         return True
     else:
@@ -44,7 +38,10 @@ def isMaskOn(imagePath):
 
 if __name__ == '__main__':
     file_path = "./MaskClassifierClient/testImage.jpg"
-    result = isMaskOn(file_path)
+    with open(file_path, 'rb') as ff:
+      content = ff.read()
+    ff.close()
+    result = isMaskOn(content)
     print("Mask on?: " + str(result))
-    result = isMaskOnCorrect(file_path)
+    result = isMaskOnCorrect(content)
     print("Mask on correctly?: " + str(result))
