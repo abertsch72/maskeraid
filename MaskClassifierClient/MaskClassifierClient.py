@@ -16,7 +16,7 @@ def get_prediction(content, project_id, model_id):
 
 def isMaskOnCorrect(imageBytes):
     #note: make sure the service account credentials are stored here
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/secrets/credentials.json"
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "credentials.json"
     project_id = "854619995345"
     model_id = "ICN5390476701450895360"
 
@@ -28,7 +28,7 @@ def isMaskOnCorrect(imageBytes):
 
 def isMaskOn(imageBytes):
     #note: make sure the service account credentials are stored here
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/secrets/credentials.json"
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "credentials.json"
     project_id = "854619995345"
     model_id = "ICN3259992602727940096"
 
