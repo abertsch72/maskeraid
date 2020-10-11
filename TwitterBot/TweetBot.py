@@ -2,7 +2,7 @@ import requests
 import time
 import tweepy
 import os
-#from MaskClassifierClient import isMaskOn, isMaskOnCorrect
+from FaceDetect import face_detect
 
 message = "Hi! I'm a bot working to keep people safe in the pandemic. It looks like an image you've posted shows " \
           "people who aren't wearing their masks correctly. Check out this link to learn more! " \
@@ -33,7 +33,7 @@ auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
 api = tweepy.API(auth)
 i = 0
-"""
+
 while i <= 0:
 
     result = api.search(tags_to_search[i], lang="en", result_type="recent", count="1", include_entities=True)
@@ -53,7 +53,7 @@ while i <= 0:
             print(r._json)
 
             for image in images:
-                print(image.get('media_url'))
+                print(face_detect(image.get('media_url')))
                 if False:
                     try:
                         pass
@@ -65,11 +65,4 @@ while i <= 0:
 
 
     i = (i + 1) % len(tags_to_search)
-"""
 
-username = "abertsch72"
-statusid = "1079468144710672384"
-
-api.update_status(status="@" + username + " " + message, in_reply_to_status_id=statusid)
-
-#api.send_direct_message("2780950260", message)
