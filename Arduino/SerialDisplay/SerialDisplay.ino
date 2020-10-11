@@ -6,6 +6,10 @@ Library, and was expanded on by Mahmnood Gladney.
 
 Note: sending somthing over serial will clear the whole string,
 if you want to write just to the top row, begin the message with
+'&'. If you want to do the same for the bottom row, use a '*'
+
+Pressing the right button on the shield will send the number 45 
+over serial, pressing the up button will send the number 99.
 */
 
 // include the library code:
