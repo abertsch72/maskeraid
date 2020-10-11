@@ -1,5 +1,7 @@
 import os
 import json
+import base64
+from PIL import Image
 
 from google.cloud import automl_v1
 
@@ -31,16 +33,21 @@ def isMaskOn(imageBytes):
     model_id = "ICN3259992602727940096"
 
     result = get_prediction(imageBytes, project_id, model_id).payload[0].display_name
-    if result == "Correct":
+    if result == "Mask_on":
         return True
     else:
         return False
 
 if __name__ == '__main__':
     file_path = "./MaskClassifierClient/testImage.jpg"
+    
     with open(file_path, 'rb') as ff:
       content = ff.read()
     ff.close()
+
+    #inputImage = Image.open(file_path)
+    #content = base64.b64encode(inputImage.tobytes())
+    
     result = isMaskOn(content)
     print("Mask on?: " + str(result))
     result = isMaskOnCorrect(content)
