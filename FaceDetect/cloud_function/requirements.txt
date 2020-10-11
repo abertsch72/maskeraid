@@ -1,0 +1,6 @@
+Flask==1.0.2
+google.cloud.storage==1.30.0
+google-cloud-automl==2.0.0
+opencv-python==4.2.0.34
+numpy==1.18.0
+pillow==7.0.0
